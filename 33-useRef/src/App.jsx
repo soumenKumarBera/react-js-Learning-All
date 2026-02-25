@@ -29,7 +29,7 @@ function App() {
     <center className="todo-container">
       <AppName />
       <AddTodo onClick={handelOnClick} />
-      {todoItems.length == 0 && <WelcomeMsg></WelcomeMsg>}
+      <WelcomeMsg todoItem={todoItems}></WelcomeMsg>
       <TodoItems
         todoItem={todoItems}
         onDeleteClick={handelDeleteClick}
