@@ -12,9 +12,9 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <CreatePost />,
+        element:<PostList /> ,
       },
-      { path: "/create-post", element: <PostList /> },
+      { path: "/create-post", element:  <CreatePost /> },
     ],
   },
 ]);
