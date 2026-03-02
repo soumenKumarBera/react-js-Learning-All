@@ -2,9 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import Post from "./Post";
 import { PostList as postListData } from "../store/post-list-store";
 import WelcomeMsg from "./welecomeMsg";
+import { useLoaderData } from "react-router-dom";
 
 const PostList = () => {
-  const { postList } = useContext(postListData);
+  const postList = useLoaderData();
 
   return (
     <>
