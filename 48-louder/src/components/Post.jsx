@@ -17,13 +17,13 @@ const Post = ({ post }) => {
           </span>
         </h5>
         <p className="card-text">{post.body}</p>
-        {console.log("start ")}
+
         {post.tags.map((tags) => (
           <span className="badge text-bg-primary hastag" key={tags}>
             {tags}
           </span>
         ))}
-        {console.log("end")}
+
         <div className="alert alert-success mt-3 " role="alert">
           This post has been Reacted by {post.reactions.likes}
         </div>
