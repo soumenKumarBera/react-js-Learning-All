@@ -1,28 +1,91 @@
-import { createStore } from "redux";
 
-const INITIAL_VALUE = {
-  counter: 0,
-  privacy: false
-};
+import {configureStore, createSlice} from "@reduxjs/toolkit";
 
-const counterReducer = (store = INITIAL_VALUE, action) => {
-  
+// const INITIAL_VALUE = {
+//   counter: 0,
+//   privacy: false
+// };
 
-  if (action.type === "INCREMENT") {
-    return {...store, counter: store.counter + 1 };
-  } else if (action.type === "DECREMENT") {
-    return {...store, counter: store.counter - 1 };
-  } else if (action.type === "ADD") {
-    return {...store, counter: store.counter + Number(action.payload.num) };
-  }else if ( action.type === "SUB") {
-    return {...store, counter: store.counter - Number(action.payload.num) };
-  }else if (action.type === "PRIVACY") {
-    return {...store, privacy: !store.privacy };
+const counterSlice = createSlice({
+  name: "counter",
+  initialState: {counterVal: 0},
+  reducers: {
+
+    increment: (state) =>{
+      state.counterVal++;
+
+    },
+
+    decrement: (state) => {
+      state.counterVal--;
+
+
+    },
+
+    add: (state, action)=>{
+      state.counterVal += Number(action.payload.num);
+
+
+    },
+
+    subtract: (state, action) =>{
+      state.counterVal -= Number(action.payload);
+
+
+    },
+
   }
 
-  return store;
-};
 
-const counterStore = createStore(counterReducer);
+});
+
+const privacySlice = createSlice({
+  name: "privacy",
+  initialState: false,
+  reducers: {
+    
+    toggle: (state)=>{
+    return  state = !state;
+
+    }
+
+
+  }
+
+
+
+
+})
+
+
+
+const counterStore = configureStore({reducer:{
+ counter: counterSlice.reducer,
+ privacy: privacySlice.reducer,
+
+
+}});
+
+export const counterAction = counterSlice.actions;
+export const privacyActions = privacySlice.actions;
 
 export default counterStore;
+
+
+// const counterReducer = (store = INITIAL_VALUE, action) => {
+  
+
+//   if (action.type === "INCREMENT") {
+//     return {...store, counter: store.counter + 1 };
+//   } else if (action.type === "DECREMENT") {
+//     return {...store, counter: store.counter - 1 };
+//   } else if (action.type === "ADD") {
+//     return {...store, counter: store.counter + Number(action.payload.num) };
+//   }else if ( action.type === "SUB") {
+//     return {...store, counter: store.counter - Number(action.payload.num) };
+//   }else if (action.type === "PRIVACY") {
+//     return {...store, privacy: !store.privacy };
+//   }
+
+//   return store;
+// };
